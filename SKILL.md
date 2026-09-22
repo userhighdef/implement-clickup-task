@@ -69,6 +69,23 @@ Attachments are worth the effort. Screenshots of a bug, a spreadsheet of test ca
 a Postman collection often define the acceptance criteria more precisely than the
 description does.
 
+### Rename the session
+
+As soon as you know the task ID and name, rename the session so it is findable later.
+Call `mcp__ccd_session_mgmt__set_session_title` with `session_id: "self"` and a title of
+the custom task ID, a space, then a short version of the task name:
+
+```
+PROJ-412 Fix timezone offset on export
+```
+
+Keep it to about six words. A generic title like "ClickUp task implementation" tells you
+nothing once several of these sessions are open at once, which is the whole problem this
+solves. The app replaces titles it generated itself without asking, so this is not
+interrupting.
+
+Skip it if the tool is not available — it exists only in the Claude Code desktop app.
+
 ## Step 2 — Pick the repo
 
 Replace this table with your own projects. If your work always lands in one repo, keep a
