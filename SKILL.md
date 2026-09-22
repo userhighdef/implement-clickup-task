@@ -44,6 +44,9 @@ Capture the raw task ID from the `clickup_get_task_details` response as well.
 `clickup_get_attachments` has no `custom_task_ids` option, so its `entity_id` must be
 the raw ID — passing `PROJ-412` there fails.
 
+Keep the task `url` from that same response too. The PR description opens with it, and
+rebuilding a ClickUp link by hand later is guesswork.
+
 Then read everything:
 
 | What | Tool |
@@ -187,13 +190,22 @@ gh pr create --base <base-branch> --assignee @me --title "<title>" --body "<body
 
 Title: `<customTaskId>/<shortTaskName>` — the same string as the branch name.
 
-Body: a short summary of what the task asked for and what you did, then the technical
+Body: start with a link to the ClickUp card on its own line, so anyone reading the PR
+can reach the ticket without searching for it. Use the task ID as the link text:
+
+```markdown
+[PROJ-412](https://app.clickup.com/t/<raw-task-id>)
+```
+
+Then a short summary of what the task asked for and what you did, then the technical
 changes as a bullet list. Stay at the level of "what changed and where", not
 line-by-line detail — the diff already shows that.
 
 Example body:
 
 ```markdown
+[PROJ-412](https://app.clickup.com/t/86a1x2y3z)
+
 Exports rendered timestamps in the server timezone, so users outside it saw
 rows shifted by a few hours. This uses the report's own timezone instead.
 
